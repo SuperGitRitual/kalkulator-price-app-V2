@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function removeIVA() {
-  const price = parseFloat(document.getElementById('price').value);
+  const price = parseFloat(document.getElementById('price').value.replace(/,/g, ''));
   const errorElement = document.getElementById('error');
   
   if (isNaN(price)) {
@@ -26,13 +26,13 @@ function removeIVA() {
   }
 
   const priceWithoutIVA = price / 1.16;
-  document.getElementById('price').value = priceWithoutIVA.toFixed(2);
+  document.getElementById('price').value = formatNumber(priceWithoutIVA);
   errorElement.textContent = '';
   console.log('IVA removed, new price:', priceWithoutIVA);
 }
 
 function calculatePrice() {
-  const price = parseFloat(document.getElementById('price').value);
+  const price = parseFloat(document.getElementById('price').value.replace(/,/g, ''));
   const margin = parseFloat(document.getElementById('margin').value);
   const discount1 = parseFloat(document.getElementById('discount1').value) || 0;
   const discount2 = parseFloat(document.getElementById('discount2').value) || 0;
@@ -46,15 +46,11 @@ function calculatePrice() {
     return;
   }
 
-  // Calcular el precio al cliente basado en el margen
   const clientPrice = price * ((100 - margin) / 100);
-
-  // Aplicar descuentos adicionales
   const priceAfterDiscount1 = clientPrice * (1 - (discount1 / 100));
   const finalPrice = priceAfterDiscount1 * (1 - (discount2 / 100));
 
-  // Mostrar el resultado
-  resultElement.textContent = `El precio final es ${finalPrice.toFixed(2)} MXN`;
+  resultElement.textContent = `El precio final es ${formatNumber(finalPrice)} MXN`;
   errorElement.textContent = '';
   resultContainer.style.display = 'block';
   console.log('Final price calculated:', finalPrice);
@@ -68,4 +64,8 @@ function resetFields() {
   document.getElementById('error').textContent = '';
   document.getElementById('result-container').style.display = 'none';
   console.log('Fields reset');
+}
+
+function formatNumber(number) {
+  return number.toLocaleString('es-MX', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
