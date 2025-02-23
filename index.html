@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Margin Kalk App</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="card">
+    <div class="card-header">
+      <h2 class="card-title">CALCULADORA DE MARGEN</h2>
+      <p class="card-description">Calcula el margen desde el precio publico</p>
+      <!-- Añade la imagen aquí -->
+      <img src="Pics/fondo nature.png" alt="Descripción de la imagen" class="card-image">
+    </div>
+    <div class="card-content">
+      <div class="input-group">
+        <label for="price">Precio Público</label>
+        <input id="price" type="text">
+      </div>
+      <div class="input-group">
+        <label for="margin">Margen </label>
+        <input id="margin" type="text">
+      </div>
+      <div class="input-group">
+        <label for="discount1">Descuento 1 </label>
+        <input id="discount1" type="text">
+      </div>
+      <div class="input-group">
+        <label for="discount2">Descuento 2 </label>
+        <input id="discount2" type="text">
+      </div>
+      <p id="error" class="error"></p>
+      <button id="calculate" class="button">Calcular</button>
+      <button id="remove-iva" class="button">Quitar IVA</button>
+      <button id="reset" class="button">Reset</button>
+      <div id="result-container" class="result-container" style="display: none;">
+        <h3 class="result-title">Resultado</h3>
+        <p id="result" class="result-description"></p>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
